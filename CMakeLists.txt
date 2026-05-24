@@ -56,7 +56,7 @@ endif()
 
 ecm_setup_version(${PROJECT_VERSION} VARIABLE_PREFIX KSCREEN
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kscreen_version.h"
-                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6ScreenConfigVersion.cmake"
+			PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/SonicDEScreenConfigVersion.cmake"
                         SOVERSION 8)
 
 ecm_set_disabled_deprecation_versions(QT 5.15.0
@@ -72,7 +72,7 @@ endif()
 
 ecm_install_po_files_as_qm(poqm)
 
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Screen")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/SonicDEScreen")
 
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
@@ -84,21 +84,21 @@ kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 if (BUILD_QCH)
     ecm_install_qch_export(
         TARGETS KF6Screen_QCH
-        FILE KF6ScreenQchTargets.cmake
+	FILE SonicScreenQchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6ScreenQchTargets.cmake\")")
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/SonicDEScreenQchTargets.cmake\")")
 endif()
 
-configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6ScreenConfig.cmake.in"
-                              "${CMAKE_CURRENT_BINARY_DIR}/KF6ScreenConfig.cmake"
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/SonicDEScreenConfig.cmake.in"
+	"${CMAKE_CURRENT_BINARY_DIR}/SonicDEScreenConfig.cmake"
                               INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
 )
 
 install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/KF6ScreenConfig.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF6ScreenConfigVersion.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/SonicDEScreenConfig.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/SonicDEScreenConfigVersion.cmake"
   DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
   COMPONENT Devel
 )
@@ -106,7 +106,7 @@ install(FILES
 install(EXPORT
   KF6ScreenTargets
   DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-  FILE KF6ScreenTargets.cmake
+  FILE SonicDEScreenTargets.cmake
   NAMESPACE KF6::
   COMPONENT Devel
 )
